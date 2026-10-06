@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codes Singlefile</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e1b4b);
+      color: white;
+    }
+
+    .container {
+      width: min(90%, 500px);
+      padding: 35px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.2rem;
+    }
+
+    .subtitle {
+      margin-bottom: 30px;
+      color: #cbd5e1;
+    }
+
+    .buttons {
+      display: grid;
+      gap: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px 20px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25);
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Codes SingleFile</h1>
+    <div class="subtitle">Choose something to open</div>
+
+    <div class="buttons">
+
+      <button onclick="openCode('https://cdn.jsdelivr.net/gh/CodingWhileOnFire/Codes-main@main/UGSFILES.html')">
+        UGS FILES
+      </button>
+
+      <button onclick="openCode('https://cdn.jsdelivr.net/gh/CodingWhileOnFire/Codes-main@main/GN-MATH.html')">
+        GN MATH
+      </button>
+
+      <button onclick="openCode('https://cdn.jsdelivr.net/gh/acodingprojects/urban-umbrella@master/fivenightsatepstiens.html')">
+        FNAE
+      </button>
+
+      <button onclick="openJS('https://cdn.jsdelivr.net/gh/acodingprojects/urban-umbrella@master/asher.js')">
+        MORE GAMES
+      </button>
+
+    </div>
+
+    <div class="footer">
+      Code launcher
+    </div>
+  </div>
+
+  <script>
+    function openCode(url) {
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error("Failed to load file.");
+          return response.text();
+        })
+        .then(html => {
+          document.open();
+          document.write(html);
+          document.close();
+        })
+        .catch(error => {
+          alert("Could not open the file.");
+          console.error(error);
+        });
+    }
+
+    function openJS(url) {
+      fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error("Failed to load script.");
+          return response.text();
+        })
+        .then(code => {
+          document.open();
+          document.write("<script>" + code + "<\/script>");
+          document.close();
+        })
+        .catch(error => {
+          alert("Could not open the game.");
+          console.error(error);
+        });
+    }
+  </script>
+
+</body>
+</html>
